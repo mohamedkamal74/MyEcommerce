@@ -10,6 +10,8 @@ namespace MyEcommerce.Models
         [Required(ErrorMessage ="اسم الصنف مطلوب")]
         public string CategoryName { get; set; }
         public string? CategoryPhoto { get; set; }
+        [NotMapped]
+
         public IFormFile File { get; set; }
         public int ProductId { get; set; }
         [ForeignKey("ProductId")]

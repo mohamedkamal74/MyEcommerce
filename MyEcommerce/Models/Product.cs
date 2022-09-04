@@ -16,6 +16,7 @@ namespace MyEcommerce.Models
 
         public decimal Price { get; set; }
         public decimal ProductImage { get; set; }
+        [NotMapped]
         public IFormFile File { get; set; }
         public int CategoryId { get; set; }
         [ForeignKey("CategoryId")]
