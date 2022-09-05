@@ -18,7 +18,17 @@ namespace MyEcommerce.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Product()
+        {
+            return View();
+        }
+
+        public IActionResult Contact()
+        {
+            return View();
+        }
+
+        public IActionResult ProductDetails()
         {
             return View();
         }
