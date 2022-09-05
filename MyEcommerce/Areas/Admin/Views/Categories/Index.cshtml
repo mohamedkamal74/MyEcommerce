@@ -1,0 +1,75 @@
+﻿<div class="col-md-10 mt-4 p-auto">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Categories List</h3>
+
+                <div >
+                  <a asp-action="Create" class="btn btn-outline-primary">Add Category</a>
+                </div>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body p-0">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th style="width: 10px">#</th>
+                      <th>Category Name</th>
+                      <th>Image</th>
+                      <th >Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>1.</td>
+                      <td>Mobile Phones</td>
+                      <td>
+                        <div >
+                          <div> Image</div>
+                        </div>
+                      </td>
+                      <td>
+                          <a asp-action="Edit" class="btn btn-info" >Edit</a>
+                          <a asp-action="Delete" class="btn btn-outline-danger" >Delete</a>
+                         
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>2.</td>
+                      <td>Clean database</td>
+                      <td>
+                        <div class="progress progress-xs">
+                          <div class="progress-bar bg-warning" style="width: 70%"></div>
+                        </div>
+                      </td>
+                      <td><span class="badge bg-warning">70%</span></td>
+                    </tr>
+                    <tr>
+                      <td>3.</td>
+                      <td>Cron job running</td>
+                      <td>
+                        <div class="progress progress-xs progress-striped active">
+                          <div class="progress-bar bg-primary" style="width: 30%"></div>
+                        </div>
+                      </td>
+                      <td><span class="badge bg-primary">30%</span></td>
+                    </tr>
+                    <tr>
+                      <td>4.</td>
+                      <td>Fix and squish bugs</td>
+                      <td>
+                        <div class="progress progress-xs progress-striped active">
+                          <div class="progress-bar bg-success" style="width: 90%"></div>
+                        </div>
+                      </td>
+                      <td><span class="badge bg-success">90%</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+
+           
+            <!-- /.card -->
+          </div>
