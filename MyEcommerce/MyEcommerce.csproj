@@ -25,6 +25,7 @@
   <ItemGroup>
     <Folder Include="wwwroot\Admin\" />
     <Folder Include="wwwroot\category\" />
+    <Folder Include="wwwroot\product\" />
   </ItemGroup>
 
 </Project>

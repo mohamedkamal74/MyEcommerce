@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Product>
+
+<div class="col-md-10 mt-4 p-auto">
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Products List</h3>
+
+            <div>
+                <a asp-action="Create" class="btn btn-outline-primary">Add Product</a>
+            </div>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body p-0">
+            <table class="table">
+                <thead>
+                    <tr>
+
+                       
+                        <th>Product Name</th>
+                        <th>Description</th>
+                        <th>Price</th>
+                         <th> Category</th>
+                        <th> Product Image</th>
+                       
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            
+                            <td>@item.ProductName</td>
+                            <td>@item.Description</td>
+                            <td>@item.Price </td>
+                            <td>@item.Category.CategoryName </td>
+                            
+                            <td>
+                                <div>
+                                   <img src="~/category/@item.ProductImage" style="width=60px!important;height:60px" class="img-thumbnail" alt="Product Image"/>
+                                </div>
+                            </td>
+                            <td>
+                                <a asp-action="Edit" class="btn btn-info" asp-route-Id="@item.ProductId">Edit</a>
+                                <a asp-action="Delete" class="btn btn-outline-danger" asp-route-Id="@item.ProductId">Delete</a>
+
+                            </td>
+                        </tr>
+                    }
+
+                    
+                </tbody>
+            </table>
+        </div>
+        <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+    <!-- /.card -->
+</div>

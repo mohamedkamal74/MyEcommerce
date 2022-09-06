@@ -15,7 +15,7 @@ namespace MyEcommerce.Models
         [Required(ErrorMessage = "سعر المنتج مطلوب")]
 
         public decimal Price { get; set; }
-        public decimal ProductImage { get; set; }
+        public string? ProductImage { get; set; }
         [NotMapped]
         public IFormFile File { get; set; }
         public int CategoryId { get; set; }
