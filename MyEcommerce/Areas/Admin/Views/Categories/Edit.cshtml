@@ -12,9 +12,9 @@
             <div asp-validation-summary=ModelOnly class="text-danger"></div>
             <input type="hidden" asp-for=CategoryId />
             <input type="hidden" asp-for=CategoryPhoto />
-
+           
             <img src="~/category/@Model.CategoryPhoto" style="width=100px;height:80px" class="img-thumbnail" alt="Category Image" />
-
+            
             <div class="card-body">
                 <div class="form-group">
                     <label asp-for=CategoryName for="exampleInputEmail1">Category Name</label>
