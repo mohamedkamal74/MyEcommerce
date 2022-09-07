@@ -12,8 +12,8 @@ using MyEcommerce.Data;
 namespace MyEcommerce.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220904150504_intialDb")]
-    partial class intialDb
+    [Migration("20220907222631_intialdb")]
+    partial class intialdb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -241,9 +241,6 @@ namespace MyEcommerce.Migrations
                     b.Property<string>("CategoryPhoto")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
                     b.HasKey("CategoryId");
 
                     b.ToTable("Categories");
@@ -280,7 +277,10 @@ namespace MyEcommerce.Migrations
             modelBuilder.Entity("MyEcommerce.Models.Product", b =>
                 {
                     b.Property<int>("ProductId")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductId"), 1L, 1);
 
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
@@ -292,8 +292,8 @@ namespace MyEcommerce.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<decimal>("ProductImage")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<string>("ProductImage")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ProductName")
                         .IsRequired()
@@ -391,12 +391,6 @@ namespace MyEcommerce.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MyEcommerce.Models.Category", null)
-                        .WithMany("Product")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Category");
                 });
 
@@ -414,11 +408,6 @@ namespace MyEcommerce.Migrations
 
                     b.Navigation("ApplicationUser");
 
-                    b.Navigation("Product");
-                });
-
-            modelBuilder.Entity("MyEcommerce.Models.Category", b =>
-                {
                     b.Navigation("Product");
                 });
 #pragma warning restore 612, 618

@@ -1,0 +1,76 @@
+﻿@model Product
+
+<div class="col-md-10 mt-4 p-auto">
+            <!-- general form elements -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Add Product </h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form asp-action="Create" method="post" enctype="multipart/form-data">
+                  <div asp-validation-summary=ModelOnly class="text-danger"></div>
+                <div class="card-body">
+                  <div class="form-group">
+                    <label asp-for=ProductName for="exampleInputEmail1">Product Name</label>
+                    <input asp-for=ProductName class="form-control"  placeholder="Enter Product Name">
+                    <span asp-validation-for=ProductName class="text-danger"></span>
+                  </div>
+
+                   <div class="form-group">
+                    <label asp-for=Description for="exampleInputEmail1">Description</label>
+                    <textarea asp-for=Description class="form-control"  ></textarea>
+                    <span asp-validation-for=Description class="text-danger"></span>
+                  </div>
+
+                   <div class="form-group">
+                    <label asp-for=Price for="exampleInputEmail1">Price</label>
+                    <input asp-for=Price class="form-control"  placeholder="Enter Price">
+                    <span asp-validation-for=Price class="text-danger"></span>
+                  </div>
+
+                   <div class="form-group">
+                    <label asp-for=CategoryId for="exampleInputEmail1">Category</label>
+                    <select asp-for=CategoryId class="form-control" asp-items="@(new SelectList(ViewBag.category,"CategoryId","CategoryName"))">
+                        <option>Select Category ....</option>
+                    </select>
+                    <span asp-validation-for=CategoryId class="text-danger"></span>
+                  </div>
+
+
+                  
+                  <div class="form-group">
+                    <label asp-for=ProductImage >Product Photo</label>
+                    <div class="input-group">
+                      <div class="custom-file">
+                        <input type="file" name="File" class="custom-file-input" asp-for=File >
+                        <label class="custom-file-label" >Choose photo</label>
+                      </div>
+                      <div class="input-group-append">
+                        <span class="input-group-text">Upload</span>
+                      </div>
+                    </div>
+                    <span asp-validation-for=ProductImage class="text-danger"></span>
+                                        
+                  </div>
+                 
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                  <button type="submit" asp-controller="Products" asp-area="Admin" asp-action="Create" class="btn btn-primary">Create</button>
+                   <a asp-action="Index" class="btn btn-dark" >Cancel</a>
+                </div>
+              </form>
+            </div>
+            <!-- /.card -->
+
+         
+
+          </div>
+
+
+ @section Scripts{
+     <partial name="_ValidationScriptsPartial" />
+ }
+  

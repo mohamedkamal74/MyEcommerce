@@ -237,6 +237,9 @@
     <script src="~/js/main.js"></script>
 
  @await RenderSectionAsync("Scripts", required: false)
+  @section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial",false); }
+}
 </body>
 
 </html>

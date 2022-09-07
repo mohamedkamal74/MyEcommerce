@@ -239,9 +239,6 @@ namespace MyEcommerce.Migrations
                     b.Property<string>("CategoryPhoto")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
                     b.HasKey("CategoryId");
 
                     b.ToTable("Categories");
@@ -278,7 +275,10 @@ namespace MyEcommerce.Migrations
             modelBuilder.Entity("MyEcommerce.Models.Product", b =>
                 {
                     b.Property<int>("ProductId")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductId"), 1L, 1);
 
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
@@ -389,12 +389,6 @@ namespace MyEcommerce.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MyEcommerce.Models.Category", null)
-                        .WithMany("Product")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Category");
                 });
 
@@ -412,11 +406,6 @@ namespace MyEcommerce.Migrations
 
                     b.Navigation("ApplicationUser");
 
-                    b.Navigation("Product");
-                });
-
-            modelBuilder.Entity("MyEcommerce.Models.Category", b =>
-                {
                     b.Navigation("Product");
                 });
 #pragma warning restore 612, 618

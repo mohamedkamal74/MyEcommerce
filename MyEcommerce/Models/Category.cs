@@ -13,8 +13,6 @@ namespace MyEcommerce.Models
         [NotMapped]
 
         public IFormFile File { get; set; }
-        public int ProductId { get; set; }
-        [ForeignKey("ProductId")]
-        public virtual ICollection <Product>? Product { get; set; }
+       
     }
 }
