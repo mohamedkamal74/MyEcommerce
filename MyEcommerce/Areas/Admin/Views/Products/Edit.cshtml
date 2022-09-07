@@ -4,11 +4,15 @@
             <!-- general form elements -->
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Add Product </h3>
+                <h3 class="card-title">Edit Product </h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form asp-action="Create" method="post" enctype="multipart/form-data">
+              <form asp-action="Edit" method="post" enctype="multipart/form-data">
+                  <input type="hidden" asp-for=ProductId />
+                  <input type="hidden" asp-for=ProductImage />
+             <img src="~/product/@Model.ProductImage" style="width=80px!important;height:80px" class="img-thumbnail" alt="Product Image"/>
+
                   <div asp-validation-summary=ModelOnly class="text-danger"></div>
                 <div class="card-body">
                   <div class="form-group">
@@ -58,7 +62,7 @@
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" asp-controller="Products" asp-area="Admin" asp-action="Create" class="btn btn-primary">Create</button>
+                  <button type="submit" asp-controller="Products" asp-area="Admin" asp-action="Edit" class="btn btn-primary">Edit</button>
                    <a asp-action="Index" class="btn btn-dark" >Cancel</a>
                 </div>
               </form>

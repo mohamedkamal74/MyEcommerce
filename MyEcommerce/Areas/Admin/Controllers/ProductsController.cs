@@ -53,5 +53,74 @@ namespace MyEcommerce.Areas.Admin.Controllers
             return View(model);
 
         }
+
+
+        [HttpGet]
+        public IActionResult Edit(int? Id)
+        {
+            if (Id == null)
+                return NotFound();
+            var product = _context.Products.Find(Id);
+            ViewBag.category = _context.Categories.ToList();
+            return View(product);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(Product model, IFormFile File)
+        {
+            if (ModelState.IsValid)
+            {
+                if (File != null)
+                {
+                    string imagename = Guid.NewGuid().ToString() + ".jpg";
+                    string filepath = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot/product", imagename);
+
+                    using (var filestream = System.IO.File.Create(filepath))
+                    {
+                        await File.CopyToAsync(filestream);
+
+                    }
+                    model.ProductImage = imagename;
+                }
+                else
+                {
+                    model.ProductImage = model.ProductImage;
+                }
+                _context.Products.Update(model);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            ViewBag.category = _context.Categories.ToList();
+           // return RedirectToAction(nameof(Index));
+
+              return View(model);
+
+        }
+
+
+        [HttpGet]
+        public IActionResult Delete(int? Id)
+        {
+            if (Id == null)
+                return NotFound();
+            var product = _context.Products.Find(Id);
+            ViewBag.category = _context.Categories.ToList();
+            return View(product);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Delete(int Id)
+        {
+            if (Id != null)
+            {
+                var product = _context.Products.Find(Id);
+                _context.Products.Remove(product);
+                _context.SaveChanges();
+                return RedirectToAction(nameof(Index));
+            }
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
