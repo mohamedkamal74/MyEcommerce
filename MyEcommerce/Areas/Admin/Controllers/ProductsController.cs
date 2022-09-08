@@ -17,7 +17,7 @@ namespace MyEcommerce.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            return View(_context.Products.Include(c=>c.Category).OrderBy(x=>x.ProductName).ToList());
+            return View(_context.Products.Include(c => c.Category).OrderBy(x => x.ProductName).ToList());
         }
 
         [HttpGet]
@@ -69,32 +69,27 @@ namespace MyEcommerce.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Product model, IFormFile File)
         {
-            if (ModelState.IsValid)
+
+            if (File != null)
             {
-                if (File != null)
-                {
-                    string imagename = Guid.NewGuid().ToString() + ".jpg";
-                    string filepath = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot/product", imagename);
+                string imagename = Guid.NewGuid().ToString() + ".jpg";
+                string filepath = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot/product", imagename);
 
-                    using (var filestream = System.IO.File.Create(filepath))
-                    {
-                        await File.CopyToAsync(filestream);
-
-                    }
-                    model.ProductImage = imagename;
-                }
-                else
+                using (var filestream = System.IO.File.Create(filepath))
                 {
-                    model.ProductImage = model.ProductImage;
+                    await File.CopyToAsync(filestream);
+
                 }
-                _context.Products.Update(model);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                model.ProductImage = imagename;
             }
-            ViewBag.category = _context.Categories.ToList();
-           // return RedirectToAction(nameof(Index));
+            else
+            {
+                model.ProductImage = model.ProductImage;
+            }
+            _context.Products.Update(model);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
 
-              return View(model);
 
         }
 

@@ -1,11 +1,11 @@
 ﻿@model IEnumerable<ContactUs>
 
-<div class="col-md-10 mt-4 pr-3">
+<div class="col-md-12 mt-4 pr-3">
     <div class="card">
         <div class="card-header">
             <h3 class="card-title"> List of Messages</h3>
 
-            
+
         </div>
         <!-- /.card-header -->
         <div class="card-body p-0">
@@ -13,7 +13,7 @@
                 <thead class="table-info">
                     <tr>
 
-                       
+
                         <th> Name</th>
                         <th>Email</th>
                         <th>Subject</th>
@@ -26,16 +26,19 @@
                     @foreach (var item in Model)
                     {
                         <tr>
-                            
+
                             <td>@item.Name</td>
                             <td>@item.Email</td>
                             <td>@item.Subject</td>
+                            @*     to cut string if he very long
+                                <td>@(item.Message.Length > 20 ? $"{item.Message.Substring(0, 20)}..." : item.Message)</td>
+                            *@
                             <td>@item.Message</td>
-                           
+
                         </tr>
                     }
 
-                    
+
                 </tbody>
             </table>
         </div>

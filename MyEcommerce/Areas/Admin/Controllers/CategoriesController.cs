@@ -64,8 +64,7 @@ namespace MyEcommerce.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Category model, IFormFile File)
         {
-            if (ModelState.IsValid)
-            {
+            
                 if (File != null)
                 {
                     string imagename = Guid.NewGuid().ToString() + ".jpg";
@@ -85,9 +84,7 @@ namespace MyEcommerce.Areas.Admin.Controllers
                 _context.Categories.Update(model);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
-            }
-
-            return View(model);
+         
         }
 
         [HttpGet]

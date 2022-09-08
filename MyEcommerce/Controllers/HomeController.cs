@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MyEcommerce.Data;
 using MyEcommerce.Models;
+using MyEcommerce.ViewModels;
 using System.Diagnostics;
 
 namespace MyEcommerce.Controllers
@@ -18,7 +19,12 @@ namespace MyEcommerce.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var model = new HomeViewModel
+            {
+                Categories=_context.Categories.ToList(),
+                Products=_context.Products.ToList(),
+            };
+            return View(model);
         }
 
         public IActionResult Product()
@@ -52,6 +58,12 @@ namespace MyEcommerce.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public IActionResult Products(int Id)
+        {
+            var products=_context.Products.Where(x=>x.CategoryId==Id).ToList();
+            return View(products);
         }
     }
 }
