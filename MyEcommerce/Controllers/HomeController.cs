@@ -32,6 +32,11 @@ namespace MyEcommerce.Controllers
         {
             return View(_context.Products.OrderByDescending(x=>x.Price).ToList());
         }
+        [HttpPost]
+        public IActionResult Search(string proName)
+        {
+            return View(_context.Products.Where(x=>x.ProductName.Contains(proName.Trim())).ToList());
+        }
         [HttpGet]
         public IActionResult Contact()
         {
