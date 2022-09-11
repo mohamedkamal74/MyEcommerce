@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using MyEcommerce.Data;
 using MyEcommerce.Models;
 using MyEcommerce.ViewModels;
@@ -29,7 +30,7 @@ namespace MyEcommerce.Controllers
 
         public IActionResult Product()
         {
-            return View();
+            return View(_context.Products.OrderByDescending(x=>x.Price).ToList());
         }
         [HttpGet]
         public IActionResult Contact()
@@ -49,9 +50,9 @@ namespace MyEcommerce.Controllers
             return View(model);
         }
 
-        public IActionResult ProductDetails()
+        public IActionResult ProductDetails(int? Id)
         {
-            return View();
+            return View(_context.Products.Include(x=>x.Category).FirstOrDefault(x=>x.ProductId==Id));
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
