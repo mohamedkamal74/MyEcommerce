@@ -28,9 +28,11 @@ namespace MyEcommerce.Controllers
             return View(model);
         }
 
-        public IActionResult Product()
+        public  async Task< IActionResult> Product(int page=1)
         {
-            return View(_context.Products.OrderByDescending(x=>x.Price).ToList());
+            var products = _context.Products.OrderByDescending(x => x.Price);
+            var model=await GetPage(products,page);
+            return View(model);
         }
         [HttpPost]
         public IActionResult Search(string proName)
@@ -70,6 +72,23 @@ namespace MyEcommerce.Controllers
         {
             var products=_context.Products.Where(x=>x.CategoryId==Id).ToList();
             return View(products);
+        }
+
+        public async Task<List<Product>>GetPage(IQueryable<Product> result,int pagenumber)
+        {
+            const int pagesize = 2;
+            decimal rowCount = await _context.Products.CountAsync();
+            var pageCount=Math.Ceiling(rowCount/pagesize);
+            if (pagenumber > pageCount)
+                pagenumber = 1;
+            pagenumber = pagenumber <= 0 ? 1 : pagenumber;
+            int skipCount = (pagenumber - 1) * pagesize;
+            var paeData = await result.Skip(skipCount).Take(pagesize).ToListAsync();
+
+            ViewBag.CurrentPage = pagenumber;
+            ViewBag.PageCount = pageCount;
+
+            return paeData;
         }
     }
 }

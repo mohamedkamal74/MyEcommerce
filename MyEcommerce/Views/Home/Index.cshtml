@@ -1,44 +1,44 @@
-﻿ @model HomeViewModel
+﻿@model HomeViewModel
 
 
-  <!-- Topbar Start -->
-    <div class="container-fluid">
+<!-- Topbar Start -->
+<div class="container-fluid">
 
-        <div class="row align-items-center bg-light py-3 px-xl-5 d-none d-lg-flex">
-            <div class="col-lg-4">
-                <a href="" class="text-decoration-none">
-                    <span class="h1 text-uppercase text-primary bg-dark px-2">Kamal</span>
-                    <span class="h1 text-uppercase text-dark bg-primary px-2 ml-n1">Shop</span>
-                </a>
-            </div>
-            <div class="col-lg-4 col-6 text-left">
+    <div class="row align-items-center bg-light py-3 px-xl-5 d-none d-lg-flex">
+        <div class="col-lg-4">
+            <a href="" class="text-decoration-none">
+                <span class="h1 text-uppercase text-primary bg-dark px-2">Kamal</span>
+                <span class="h1 text-uppercase text-dark bg-primary px-2 ml-n1">Shop</span>
+            </a>
+        </div>
+        <div class="col-lg-4 col-6 text-left">
 
-                <form asp-action="Search" method="post">
-                    <div class="input-group">
-                        <input name="proName" type="text" class="form-control" placeholder="Search for products">
-                        <div class="input-group-append">
-                            <span class="input-group-text bg-transparent text-primary">
-                                <i class="fa fa-search"></i>
-                            </span>
-                        </div>
+            <form asp-action="Search" method="post">
+                <div class="input-group">
+                    <input name="proName" type="text" class="form-control" placeholder="Search for products">
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-info"><i class="fa fa-search"></i></button>
+
+
                     </div>
-                </form>
-            </div>
-            <div class="col-lg-4 col-6 text-right">
-                <p class="m-0">Customer Service</p>
-                <h5 class="m-0">97243461</h5>
-            </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-lg-4 col-6 text-right">
+            <p class="m-0">Customer Service</p>
+            <h5 class="m-0">97243461</h5>
         </div>
     </div>
-    <!-- Topbar End -->
-    <!-- Categories Start -->
-    <div class="container-fluid pt-5">
-        <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Categories</span></h2>
-        <div class="row px-xl-5 pb-3">
+</div>
+<!-- Topbar End -->
+<!-- Categories Start -->
+<div class="container-fluid pt-5">
+    <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Categories</span></h2>
+    <div class="row px-xl-5 pb-3">
 
-            @foreach (var category in Model.Categories)
-            {
-               
+        @foreach (var category in Model.Categories)
+        {
+
             <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
                 <a class="text-decoration-none" href="/Home/Products/@category.CategoryId">
                     <div class="cat-item d-flex align-items-center mb-4">
@@ -52,22 +52,20 @@
                     </div>
                 </a>
             </div>
-            }
+        }
 
-           
-        </div>
+
     </div>
-    <!-- Categories End -->
+</div>
+<!-- Categories End -->
+<!-- Products Start -->
+<div class="container-fluid pt-5 pb-3">
+    <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Featured Products</span></h2>
+    <div class="row px-xl-5">
 
-
-    <!-- Products Start -->
-    <div class="container-fluid pt-5 pb-3">
-        <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Featured Products</span></h2>
-        <div class="row px-xl-5">
-
-            @foreach (var item in Model.Products)
-            {
-                 <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
+        @foreach (var item in Model.Products)
+        {
+            <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
                 <div class="product-item bg-light mb-4">
                     <div class="product-img position-relative overflow-hidden">
                         <img class="img-fluid w-100" src="~/product/@item.ProductImage" alt="">
@@ -91,45 +89,44 @@
                     </div>
                 </div>
             </div>
-            }
-           
-           
-          
-        </div>
-    </div>
-    <!-- Products End -->
+        }
 
-     <!-- Vendor Start -->
-    <div class="container-fluid py-5">
-        <div class="row px-xl-5">
-            <div class="col">
-                <div class="owl-carousel vendor-carousel">
-                    <div class="bg-light p-4">
-                        <img src="img/vendor-1.jpg" alt="">
-                    </div>
-                    <div class="bg-light p-4">
-                        <img src="img/vendor-2.jpg" alt="">
-                    </div>
-                    <div class="bg-light p-4">
-                        <img src="img/vendor-3.jpg" alt="">
-                    </div>
-                    <div class="bg-light p-4">
-                        <img src="img/vendor-4.jpg" alt="">
-                    </div>
-                    <div class="bg-light p-4">
-                        <img src="img/vendor-5.jpg" alt="">
-                    </div>
-                    <div class="bg-light p-4">
-                        <img src="img/vendor-6.jpg" alt="">
-                    </div>
-                    <div class="bg-light p-4">
-                        <img src="img/vendor-7.jpg" alt="">
-                    </div>
-                    <div class="bg-light p-4">
-                        <img src="img/vendor-8.jpg" alt="">
-                    </div>
+
+
+    </div>
+</div>
+<!-- Products End -->
+<!-- Vendor Start -->
+<div class="container-fluid py-5">
+    <div class="row px-xl-5">
+        <div class="col">
+            <div class="owl-carousel vendor-carousel">
+                <div class="bg-light p-4">
+                    <img src="img/vendor-1.jpg" alt="">
+                </div>
+                <div class="bg-light p-4">
+                    <img src="img/vendor-2.jpg" alt="">
+                </div>
+                <div class="bg-light p-4">
+                    <img src="img/vendor-3.jpg" alt="">
+                </div>
+                <div class="bg-light p-4">
+                    <img src="img/vendor-4.jpg" alt="">
+                </div>
+                <div class="bg-light p-4">
+                    <img src="img/vendor-5.jpg" alt="">
+                </div>
+                <div class="bg-light p-4">
+                    <img src="img/vendor-6.jpg" alt="">
+                </div>
+                <div class="bg-light p-4">
+                    <img src="img/vendor-7.jpg" alt="">
+                </div>
+                <div class="bg-light p-4">
+                    <img src="img/vendor-8.jpg" alt="">
                 </div>
             </div>
         </div>
     </div>
-    <!-- Vendor End -->
+</div>
+<!-- Vendor End -->
