@@ -27,7 +27,7 @@ namespace MyEcommerce.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, false, false);
+                var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, true, false);
                 if (result.Succeeded)
                     return RedirectToAction("Index", "Home");
                 return View(model);
@@ -55,7 +55,7 @@ namespace MyEcommerce.Controllers
                 var result = await _userManager.CreateAsync(user);
                 if (result.Succeeded)
                 {
-                    await _signInManager.SignInAsync(user, false);
+                    await _signInManager.SignInAsync(user, true);
                     return RedirectToAction("Index", "Home");
                 }    
             }
