@@ -22,15 +22,16 @@ namespace MyEcommerce.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
+      
         public async Task<IActionResult> Login(LoginViewModel model)
         {
             if (ModelState.IsValid)
             {
-                var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, true, false);
+                var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, true, true);
                 if (result.Succeeded)
                     return RedirectToAction("Index", "Home");
-                return View(model);
+                    return View(model);
+                
             }
             return View(model);
         }
@@ -42,17 +43,20 @@ namespace MyEcommerce.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel model)
+        
         {
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser()
                 {
+                    Id=model.Id.ToString(),
                     UserName = model.Email,
                     Name = model.Name,
                     Email = model.Email
 
                 };
-                var result = await _userManager.CreateAsync(user);
+                user.Id = Guid.NewGuid().ToString();
+                var result = await _userManager.CreateAsync(user,model.Password);
                 if (result.Succeeded)
                 {
                     await _signInManager.SignInAsync(user, true);
