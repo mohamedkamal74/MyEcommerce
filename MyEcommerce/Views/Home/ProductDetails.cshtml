@@ -1,7 +1,10 @@
 ﻿@model Product
 
- 
-    <div class="row px-xl-5">
+    <div class="container-fluid bg-dark mb-30">
+
+  
+        <form asp-action="AddToCart" asp-controller="Carts" method="post" asp-route-ProductId="@Model.ProductId">
+            <div class="row px-xl-5">
     <div class="col-lg-5 mb-30">
 
 
@@ -41,7 +44,7 @@
                         </button>
                     </div>
                 </div>
-                <button class="btn btn-primary px-3">
+                <button type="submit" asp-action="AddToCart" asp-controller="Carts" class="btn btn-primary px-3">
                     <i class="fa fa-shopping-cart mr-1"></i> Add To
                     Cart
                 </button>
@@ -49,5 +52,10 @@
 
         </div>
     </div>
+</form>
+
 </div>
+
+
+
 
