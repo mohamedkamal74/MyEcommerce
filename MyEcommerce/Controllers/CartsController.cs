@@ -22,24 +22,24 @@ namespace MyEcommerce.Controllers
         public async Task< IActionResult> Cart()
         {
             var user=await _userManager.GetUserAsync(User);
-            var result = _context.ShoppindCarts.Include(p => p.Product).Where(x => x.UserId.Equals(user.Id)).ToList();
+            var result = _context.ShoppindCarts.Include(p => p.Product).Where(x => x.UserId==user.Id).ToList();
             return View(result);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task< IActionResult> AddToCart(ShoppindCart model,int Qty)
+        public async Task< IActionResult> AddToCart(ShoppindCart model,int qty)
         {
             var product = _context.Products.FirstOrDefault(x => x.ProductId.Equals(model.ProductId));
             var user = await _userManager.GetUserAsync(User);
 
 
-            if (Qty <= 0)
-                Qty = 1;
+            if (qty <= 0)
+                qty = 1;
             var cart = new ShoppindCart
             {
                 UserId= user.Id,
                 ProductId = product.ProductId,
-                Quantity =Qty
+                Quantity = qty
             };
 
             var shoppingcart=_context.ShoppindCarts.FirstOrDefault(x=>x.UserId == user.Id&&x.ProductId.Equals(model.ProductId));

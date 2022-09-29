@@ -13,7 +13,7 @@ namespace MyEcommerce.Models
 
         public string? Description { get; set; }
         [Required(ErrorMessage = "سعر المنتج مطلوب")]
-
+        public int Quantity { get; set; }
         public decimal Price { get; set; }
         public string? ProductImage { get; set; }
         [NotMapped]

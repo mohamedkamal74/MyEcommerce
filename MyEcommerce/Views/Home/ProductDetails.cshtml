@@ -1,9 +1,9 @@
 ﻿@model Product
 
     <div class="container-fluid bg-dark mb-30">
+        <form asp-action="AddToCart" asp-controller="Carts" method="post" asp-route-ProductId="@Model.ProductId">
 
   
-        <form asp-action="AddToCart" asp-controller="Carts" method="post" asp-route-ProductId="@Model.ProductId">
             <div class="row px-xl-5">
     <div class="col-lg-5 mb-30">
 
@@ -37,22 +37,27 @@
                             <i class="fa fa-minus"></i>
                         </button>
                     </div>
-                    <input type="text" class="form-control bg-secondary border-0 text-center" value="1">
+                    <input type="text" name="qty" class="form-control bg-secondary border-0 text-center" value="@Model.Quantity" >
                     <div class="input-group-btn">
-                        <button class="btn btn-primary btn-plus">
+                        <button  class="btn btn-primary btn-plus d-none">
                             <i class="fa fa-plus"></i>
                         </button>
                     </div>
                 </div>
-                <button type="submit" asp-action="AddToCart" asp-controller="Carts" class="btn btn-primary px-3">
+                <div>
+
+                <button type="submit" asp-action="AddToCart" asp-route-id="@Model.ProductId" asp-controller="Carts" class="btn btn-primary px-3">
                     <i class="fa fa-shopping-cart mr-1"></i> Add To
                     Cart
                 </button>
+
+                </div>
             </div>
 
         </div>
     </div>
-</form>
+    </div>
+                </form>
 
 </div>
 
