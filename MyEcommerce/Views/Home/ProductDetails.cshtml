@@ -33,13 +33,13 @@
             <div class="d-flex align-items-center mb-4 pt-2">
                 <div class="input-group quantity mr-3" style="width: 130px;">
                     <div class="input-group-btn">
-                        <button class="btn btn-primary btn-minus">
+                        <button class="btn btn-primary" id="btnMinus" onclick="handleQuantity(this); return false;"> 
                             <i class="fa fa-minus"></i>
                         </button>
                     </div>
-                    <input type="text" name="qty" class="form-control bg-secondary border-0 text-center" value="1" >
-                    <div class="input-group-btn">
-                        <button   class="btn btn-primary btn-plus">
+                    <input type="text" name="qty22" class="form-control bg-secondary border-0 text-center" id="txtQuantity" placeholder="Enter Product Quantity" >
+                    <div class="input-group-btn" >
+                        <button  id="btnPlus" class="btn btn-primary">
                             <i class="fa fa-plus"></i>
                         </button>
                     </div>
@@ -60,7 +60,44 @@
                 </form>
 
 </div>
+@section Scripts{
+    <script>
+        function handleQuantity(event){
+             event.preventDefault();
+             console.log("Plus txtQuantity: ",$('#txtQuantity').val());
+                var quantity=Number($('#txtQuantity').val());
+                console.log("Plus quantity: ",quantity);
+                $('#txtQuantity').val(quantity+1);
+                console.log("Plus txtQuantity2: ",$('#txtQuantity').val());
+        }
+        $(function(){
+            //$('#txtQuantity').val(0);
+            //document.getElementById('btnMinus').addEventListener("click",function(event){
+            //    event.preventDefault();
+            //  //  alert('Hello from Test Mius Button');
+            //    var quantity=Number($('#txtQuantity').val());
+               
+            //    $('#txtQuantity').val(quantity-1);
+            //});
 
+            //$(document).on("click","#btnPlus",function(event){
+            //    event.preventDefault();
+            //  //  alert('Hello from Test Plus Button');
+            //   console.log("Plus txtQuantity: ",$('#txtQuantity').val());
+            //    var quantity=Number($('#txtQuantity').val());
+            //    console.log("Plus quantity: ",quantity);
+            //    $('#txtQuantity').val(quantity+1);
+            //    console.log("Plus txtQuantity2: ",$('#txtQuantity').val());
 
+            //})
+            //  document.getElementById('btnPlus').addEventListener("click",function(event){
+            //    event.preventDefault();
+            //  //  alert('Hello from Test Plus Button');
+            //    var quantity=Number($('#txtQuantity').val());
+            //    $('#txtQuantity').val(quantity+1);
 
+            //})
+        })
+    </script>
+}
 
